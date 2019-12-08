@@ -1,5 +1,4 @@
-import {setToken} from "../../config/Token";
-import {getAxiosInstance} from "../../config/Axios";
+import {login} from "../../api/account/Account";
 
 $(function() {
     const $form = $('#login-form');
