@@ -1,5 +1,5 @@
 $(function() {
-    const $form = $('#login-form');
+    const $form = $('#sign-up-form');
     const $message = $('#message');
   
     $form.submit(function(e) {
@@ -16,13 +16,13 @@ $(function() {
         url: 'http://localhost:3000/account/create',
         type: 'POST',
         data:{
-            "name": $('#email').val(),
-            "pass": $('#password').val(),
+            "name": $('#sign-up-username').val(),
+            "pass": $('#sign-up-password').val(),
         }
       }).then(() => {
-        $message.html('<span class="has-text-success">Success! You are now logged in.</span>');
+        $message.html('<span class="has-text-success">You have created an account</span>');
       }).catch(() => {
-        $message.html('<span class="has-text-danger">Something went wrong and you were not logged in. Check your email and password and your internet connection.</span>');
+        $message.html('<span class="has-text-danger">You already have an account.</span>');
       });
     });
   });

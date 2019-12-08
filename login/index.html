@@ -15,13 +15,13 @@
         <div id="login">
             <div class="login-card">
                 <div class="card-title">
-                    <h1>COMP 426 Login</h1>
+                    <h1>Login</h1>
                 </div>
 
                 <div class="content">
                     <form id="login-form">
-                        <input id="email" type="email" name="email" title="email" placeholder="Email" required autofocus>
-                        <input id="password" type="password" name="password" title="password" placeholder="Password" required>
+                        <input id="login-username" type="login-username" name="login-username" title="login-username" placeholder="Username" required autofocus>
+                        <input id="login-password" type="login-password" name="login-password" title="login-password" placeholder="Password" required>
 
                         <div class="field">
                             <div class="control">
@@ -38,9 +38,36 @@
                 </div>
             </div>
         </div>
+        <div id="sign-up">
+            <div class="sign-up-card">
+                <div class="sign-up-title">
+                    <h1>Sign Up</h1>
+                </div>
+
+                <div class="content">
+                    <form id="sign-up-form">
+                        <input id="sign-up-username" type="sign-up-username" name="sign-up-username" title="sign-up-username" placeholder="Username" required autofocus>
+                        <input id="sign-up-password" type="sign-up-password" name="sign-up-password" title="sign-up-password" placeholder="Password" required>
+
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="btn btn-primary">Sign Up</button>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <p id="message"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <!-- Include links to JavaScript files below -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="script.js"></script>
+        <script src="signup.js"></script>
+        <script src="login.js"></script>
     </body>
 </html>
