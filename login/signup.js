@@ -13,7 +13,7 @@ $(function() {
       }, {});
       
       $.ajax({
-        url: 'http://localhost:3000/account/create',
+        url: 'http://localhost:3001/account/create',
         type: 'POST',
         data:{
             "name": $('#sign-up-username').val(),

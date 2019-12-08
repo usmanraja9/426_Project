@@ -15,7 +15,7 @@ $(function() {
         }, {});
         
         $.ajax({
-          url: 'http://localhost:3000/account/login',
+          url: 'http://localhost:3001/account/login',
           type: 'POST',
           data:{
               "name": $('#login-username').val(),
