@@ -14,18 +14,220 @@
  *     the hero's name, information, and colors.
  * @param hero  A hero object (see data.js)
  */
-export const createGrid = function(hero) {
+export const createGrid = function(month, dates, start, year) {
     // TODO: Generate HTML elements to represent the hero
-    let input = `<button type = "button"> Edit </button><br>`;
-    let htmlname = `<div style = "background: ${hero.backgroundColor} "> <span = style = "color: ${hero.color}"> ${hero.name} </span> </div>`;
-    let img = `<img src = ${hero.img}>`;
-    let fiap = `<p>  ${hero.firstSeen}  </p>`;
-    let htmlfirst = `<p style  = "color: ${hero.color}">  ${hero.first}  </p>`;
-    let htmllast = `<p style  = "color: ${hero.color}">  ${hero.last}  </p>`;
-    let htmldes = `<p style  = "color: ${hero.color}">  ${hero.description}  </p>`;
-    return htmlname + htmlfirst + htmllast + htmldes + fiap + input + img;
-    // TODO: Return these elements as a string, HTMLElement, or jQuery object
-    // Example: return `<div>${hero.name}</div>`;
+    if(dates == 31){
+        if(start == "Monday"){
+            return `<table>
+    <thead>
+    <tr>
+        <th>${month}</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>${year}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Monday</td>
+        <td>Tuesday</td>
+        <td>Wednesday</td>
+        <td>Thursday</td>
+        <td>Friday</td>
+        <td>Saturday</td>
+        <td>Sunday</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+        <td>13</td>
+        <td>14</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>16</td>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
+        <td>20</td>
+        <td>21</td>
+    </tr>
+    <tr>
+        <td>22</td>
+        <td>23</td>
+        <td>24</td>
+        <td>25</td>
+        <td>26</td>
+        <td>27</td>
+        <td>28</td>
+    </tr>
+    <tr>
+        <td>29</td>
+        <td>30</td>
+        <td>31</td>
+        <td></1td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+    </table>`
+        }
+        else if(start == "Wednesday"){
+            return `<table>
+    <thead>
+    <tr>
+        <th>${month}</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>${year}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Monday</td>
+        <td>Tuesday</td>
+        <td>Wednesday</td>
+        <td>Thursday</td>
+        <td>Friday</td>
+        <td>Saturday</td>
+        <td>Sunday</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>14</td>
+        <td>15</td>
+        <td>16</td>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>21</td>
+        <td>22</td>
+        <td>23</td>
+        <td>24</td>
+        <td>25</td>
+        <td>26</td>
+    </tr>
+    <tr>
+        <td>27</td>
+        <td>28</td>
+        <td>29</td>
+        <td>30</1td>
+        <td>31</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+    </table>`
+        }
+
+    }
+    else if(dates == 30){
+        if(start == "Wednesday"){
+            return `<table>
+    <thead>
+    <tr>
+        <th>${month}</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>${year}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Monday</td>
+        <td>Tuesday</td>
+        <td>Wednesday</td>
+        <td>Thursday</td>
+        <td>Friday</td>
+        <td>Saturday</td>
+        <td>Sunday</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>14</td>
+        <td>15</td>
+        <td>16</td>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>21</td>
+        <td>22</td>
+        <td>23</td>
+        <td>24</td>
+        <td>25</td>
+        <td>26</td>
+    </tr>
+    <tr>
+        <td>27</td>
+        <td>28</td>
+        <td>29</td>
+        <td>30</1td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+    </table>`
+        }
+    }
 };
 
 
@@ -36,19 +238,19 @@ export const createGrid = function(hero) {
  *     pre-populated with the initial values of the hero.
  * @param hero  The hero object to edit (see data.js)
  */
-export const renderHeroEditForm = function(hero) {
-    // TODO: Generate HTML elements to represent the hero edit form
-    var textbox = `<form>Hero name:<br><input type = "text" value = "${hero.name}" > </input></form>`;
-    var textbox1 = `<form>First name:<br><input type = "text"  value = "${hero.first}" > </input></form>`;
-    var textbox2 = `<form>Last name:<br><input type= "text" value ="${hero.last}"> </input></form>`;
-    var textbox3 = `<form>Description:<br><textarea type= "text">${hero.description} </textarea></form>`;
-    var date = hero.firstSeen;
-    var textbox4 = `<form>First Seen Date:<br><input type= "text" value= "${date}"> </input></form>`;
-    let input = `<form><button type = "button"> cancle  </button></form>`;
-    let input2 = `<form><button type = "submit"> save </input></form>`;
-    return textbox + textbox1 + textbox2 + textbox3 + textbox4 + input + input2;
-    // TODO: Return these elements as a string, HTMLElement, or jQuery object
-    // Example: return `<form>${hero.name}</form>`;
+export const getDates = function(month, leapYear) {
+    if(month == "February"){
+        if(leapYear == true){
+            return 29;
+        }
+        else{ return 28}
+    }
+    else if(month == "April" || month == "June" || month == "September" || month == "November"){
+        return 30;
+    }
+    else{
+        return 31;
+    }
 };
 
 
@@ -67,21 +269,24 @@ export const createCal = function(heroes) {
     let date = "8";
 
     let monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    
-    // TODO: Generate the heroes using renderHeroCard()
-    for(var x = 0; x < heroes.length; x++){
-        let y = (renderHeroCard(heroes[x]));
-        $root.append(y);
-    }
-    // TODO: Append the hero cards to the $root element
+    let dayArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    let dates = getDates("January");
+    $root.replaceWith(createGrid("January", dates, "Wednesday", 2020));
 
-    // Pick a hero from the list at random
-    const randomHero = heroes[Math.floor(Math.random() * heroes.length)];
+    // // TODO: Generate the heroes using renderHeroCard()
+    // for(var x = 0; x < heroes.length; x++){
+    //     let y = (renderHeroCard(heroes[x]));
+    //     $root.append(y);
+    // }
+    // // TODO: Append the hero cards to the $root element
 
-    // TODO: Generate the hero edit form using renderHeroEditForm()
-        let y = (renderHeroEditForm(randomHero));
-        $root.append(y);
-    // TODO: Append the hero edit form to the $root element
+    // // Pick a hero from the list at random
+    // const randomHero = heroes[Math.floor(Math.random() * heroes.length)];
+
+    // // TODO: Generate the hero edit form using renderHeroEditForm()
+    //     let y = (renderHeroEditForm(randomHero));
+    //     $root.append(y);
+    // // TODO: Append the hero edit form to the $root element
 };
 
 
