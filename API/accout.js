@@ -1,5 +1,5 @@
-import {setToken} from "../../config/Token";
-import {getAxiosInstance} from "../../config/Axios";
+import {setToken} from "../Config/Token.js";
+import {getAxiosInstance} from "../Config/Axios.js";
 
 const axios = getAxiosInstance('/account');
 

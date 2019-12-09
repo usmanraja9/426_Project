@@ -21,6 +21,7 @@ $(function() {
         }
       }).then(() => {
         $message.html('<span class="has-text-success">You have created an account</span>');
+        alert(localStorage.getItem('token'));
       }).catch(() => {
         $message.html('<span class="has-text-danger">You already have an account.</span>');
       });
