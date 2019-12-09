@@ -21,6 +21,7 @@ $(async function () {
         headers: {Authorization: `Bearer ${(token)}`}
     });
 
+
     $eventList.append(
         `
         <button style="" id="delete" onclick="location.href = './create/';">Add Assignment</button>
@@ -29,12 +30,15 @@ $(async function () {
     )
 
 
-    const list = Object.entries(result.data.result);
+    var list = Object.values(result.data.result);
+
+    var sortedEvents = list.slice().sort((a, b) => b.date - a.date);
+
     var i;
     for (i = 0; i < list.length; i++) {
         $eventList.append(
             `
-            <p>${list[i][1].name} Due: ${list[i][1].date} <button style="" id="delete" onclick="deleteEvent(${list[i][0]})">Delete</button> </p>
+            <p>${sortedEvents[i].name} Due: ${sortedEvents[i].date} <button style="" id="delete" onclick="deleteEvent(${sortedEvents[i].id})">Delete</button> </p>
             
             `
         )
