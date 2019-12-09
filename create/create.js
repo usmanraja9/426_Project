@@ -13,14 +13,15 @@ async function addEvent() {
             "date": $("#inputDate").val(),
             "time": $("#inputTime").val(),
             "location": $("#inputLocation").val(),
-            //"description": $("#inputDescription").val()
+            "description": $("#inputDescription").val()
           }}
       });
-    //   location.reload();
+      location.href = '../'
+    
 }
 
 
-$(async function () {
+$(function () {
 
     $main.append(
     `<p>Event Name</p>
@@ -30,10 +31,10 @@ $(async function () {
     <p>Event Location</p>
     <input style="width:50%;" id="inputLocation" class="input" type="text" value="" name="location">
     <p>Description</p>
-    <textarea style="width:50%;" id="description" rows="4" autofocus="autofocus"></textarea>
+    <textarea style="width:50%;" id="inputDescription" rows="4" autofocus="autofocus"></textarea>
     <p> </p>
     <button style="width:25%;" id="addButton" onclick="addEvent()">Add</button>
-    <button style="width:25%;" id="cancelButton" onclick="alert(${token})">Cancel</button>`
+    <button style="width:25%;" id="cancelButton" onclick="location.href = '../'";>Cancel</button>`
     )
 
 });
