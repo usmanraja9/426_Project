@@ -158,8 +158,7 @@ $(async function () {
 
 
     var list = Object.values(result.data.result);
-
-    var sortedEvents = list.slice().sort((a, b) => b.date - a.date);
+    var sortedEvents = list.sort((a, b) => (new Date(a.date)).getTime() - (new Date(b.date)).getTime());
     const $rightColumn = $('#rightColumn');
     $rightColumn.append(
         `
