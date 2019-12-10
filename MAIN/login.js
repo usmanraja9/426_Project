@@ -23,7 +23,7 @@ $(async function() {
               });
               localStorage.setItem('token', result.data.jwt);
             $message.html('<span class="has-text-danger">Logged In!</span>');
-            window.location.href = '../index.html';
+            window.location.href = 'mainPage/index.html';
             
         } catch {
             $message.html('<span class="has-text-danger">create an account</span>');

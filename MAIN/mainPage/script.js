@@ -93,7 +93,7 @@ $(async function () {
     if (loggedIn) {
         $sidebar.append(
             `
-            <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="addAssignment" onclick="location.href = '../login/create/create.html';">Add Assignment/Event</button></p>
+            <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="addAssignment" onclick="location.href = '../create/create.html';">Add Assignment/Event</button></p>
             <br>
             <br>
             <br>
@@ -109,7 +109,7 @@ $(async function () {
     } else {
         $sidebar.append(
     `
-    <p style="text-align:center"><button class="button is-link is-large" style="" id="login" onclick="location.href = './login/';">Login</button></p>
+    <p style="text-align:center"><button class="button is-link is-large" style="" id="login" onclick="location.href = '../index.html';">Login</button></p>
 
     `
     )}
