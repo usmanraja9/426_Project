@@ -1,9 +1,24 @@
 let token = localStorage.getItem('token');
+let selectedView = localStorage.getItem('defaultView');
+
 
 const $eventList = $('#eventList');
 
 const $bdy = $('#bdy');
 const $sidebar = $('#sidebar');
+
+async function whichDelete(id) {
+
+    if (selectedView == "private") {
+        deleteAssignment(id);
+    } else if (selectedView == "user") {
+        deleteStudentEvent(id);
+    } else {
+        deleteEvent(id);
+    }
+
+
+}
 
 
 async function deleteEvent(id) {
@@ -15,11 +30,44 @@ async function deleteEvent(id) {
     location.reload();
 }
 
+async function deleteStudentEvent(id) {
+    const result = await axios({
+        method: 'DELETE',
+        url: 'http://localhost:3000/user/events/'.concat(id),
+        headers: {Authorization: `Bearer ${(token)}`}
+      });
+    location.reload();
+}
+
+async function deleteAssignment(id) {
+    const result = await axios({
+        method: 'DELETE',
+        url: 'http://localhost:3000/private/events/'.concat(id),
+        headers: {Authorization: `Bearer ${(token)}`}
+      });
+    location.reload();
+}
+
+async function viewAssignments() {
+    localStorage.setItem('defaultView', "private");
+    location.reload();
+}
+
+async function viewStudentEvents() {
+    localStorage.setItem('defaultView', "user");
+    location.reload();
+}
+
+async function viewPublicEvents() {
+    localStorage.setItem('defaultView', "public");
+    location.reload();
+}
+
+
+
 async function logout() {
 
     localStorage.setItem('token', " ");
-
-
 
     location.reload();
 }
@@ -39,13 +87,23 @@ $(async function () {
         loggedIn = true;
     } catch {
         loggedIn = false;
+        localStorage.setItem('defaultView', "public");
     }
 
     if (loggedIn) {
         $sidebar.append(
             `
-            <p style="text-align:center"><button class="button is-link is-large" style="" id="addAssignment" onclick="location.href = './create/';">Add Assignment</button></p>
-            <p style="text-align:center;vertical-align:bottom"><button class="button is-link is-large" style="" id="logout" onclick="logout()";">Logout</button></p>
+            <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="addAssignment" onclick="location.href = './create/';">Add Assignment/Event</button></p>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="viewAssignments" onclick="viewAssignments()">View Assignments</button></p>
+            <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="viewStudentEvents" onclick="viewStudentEvents()">View Student Event</button></p>
+            <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="viewPublicEvents" onclick="viewPublicEvents()">View Public Events</button></p>
+            <p style="text-align:center;padding:3%;vertical-align:bottom"><button class="button is-danger is-link is-large" style="width:80%;position:absolute;bottom:0;left:10%;" id="logout" onclick="logout()";">Logout</button></p>
+
             `
         )
     } else {
@@ -54,12 +112,7 @@ $(async function () {
     <p style="text-align:center"><button class="button is-link is-large" style="" id="login" onclick="location.href = './login/';">Login</button></p>
 
     `
-
-        )}
-
-
-
-    
+    )}
 
     $bdy.append(
     `
@@ -73,12 +126,27 @@ $(async function () {
     `
     )
 
+    var result;
+    if (selectedView == "private") {
+        result = await axios({
+            method: 'GET',
+            url: 'http://localhost:3000/private/events',
+            headers: {Authorization: `Bearer ${(token)}`}
+        });
+    } else if (selectedView == "user") {
+        result = await axios({
+            method: 'GET',
+            url: 'http://localhost:3000/user/events',
+            headers: {Authorization: `Bearer ${(token)}`}
+        });
+    } else {
+        result = await axios({
+            method: 'GET',
+            url: 'http://localhost:3000/public/events',
+            headers: {Authorization: `Bearer ${(token)}`}
+        });
+    }
 
-    const result = await axios({
-        method: 'GET',
-        url: 'http://localhost:3000/public/events',
-        headers: {Authorization: `Bearer ${(token)}`}
-    });
 
 
     // $eventList.append(
@@ -115,7 +183,7 @@ $(async function () {
                     <p>${sortedEvents[i].description} </p>
                 </div>
                 <div class="column is-one-fifth" style="width:8%;border-top-style:solid;border-bottom-style:solid;background-color:skyblue">
-                    <button class="button is-danger is-rounded is-centered" style="" id="delete" onclick="deleteEvent(${sortedEvents[i].id})">Delete</button>
+                    <button class="button is-danger is-rounded is-centered" style="" id="delete" onclick="whichDelete(${sortedEvents[i].id})">Delete</button>
                 </div>
             </div>
         </p>
