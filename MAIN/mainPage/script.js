@@ -199,8 +199,8 @@ $(async function () {
                     <p>${sortedEvents[i].description} </p>
                 </div>
                 <div class="column is-one-fifth" style="width:8%;border-top-style:solid;border-bottom-style:solid;background-color:skyblue">
-                    <button class="button is-danger is-rounded is-centered" style="" id="delete" onclick="whichDelete(${sortedEvents[i].id})">Delete</button>
-                    <button class="button is-warning is-rounded is-centered" style="" id="edit" onclick="whichEdit(${sortedEvents[i].id})">Edit</button>
+                    <p style="padding:5px"><button class="button is-danger is-rounded is-centered" style="width:84px;" id="delete" onclick="whichDelete(${sortedEvents[i].id})">Delete</button></p>
+                    <p style="padding:5px"><button class="button is-warning is-rounded is-centered" style="width:84px;" id="edit" onclick="whichEdit(${sortedEvents[i].id})">Edit</button></p>
                 </div>
             </div>
         </p>
