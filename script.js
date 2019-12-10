@@ -68,7 +68,7 @@ async function viewPublicEvents() {
 async function logout() {
 
     localStorage.setItem('token', " ");
-
+    localStorage.setItem('defaultView', "public");
     location.reload();
 }
 
