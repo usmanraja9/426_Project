@@ -26,7 +26,7 @@ async function addStudentEvent() {
     var ID = Math.trunc((new Date().getTime()) / 1000)
     const result = await axios({
         method: 'POST',
-        url: 'http://localhost:3000/user/events/'.concat(ID),
+        url: 'http://localhost:3000/private/events/'.concat(ID),
         headers: {Authorization: `Bearer ${(token)}`},
         data: {"data":{
             "name": $("#inputName").val(),   
@@ -45,7 +45,7 @@ async function addAssignment() {
     var ID = Math.trunc((new Date().getTime()) / 1000)
     const result = await axios({
         method: 'POST',
-        url: 'http://localhost:3000/private/events/'.concat(ID),
+        url: 'http://localhost:3000/user/events/'.concat(ID),
         headers: {Authorization: `Bearer ${(token)}`},
         data: {"data":{
             "name": $("#inputName").val(),   
@@ -62,11 +62,11 @@ async function addAssignment() {
 
 async function handleAddButtonClick() {
     if ($('input[name=eventType]:checked').val() == "private") {
-        addAssignment();
+        addStudentEvent();
     } else if ($('input[name=eventType]:checked').val() == "public") {
         addEvent();
     } else if ($('input[name=eventType]:checked').val() == "user") {
-        addStudentEvent();
+        addAssignment();
     }
 
 
@@ -87,8 +87,8 @@ $(function () {
     <p>Description</p> 
     <textarea style="font-size:100%;width:50%;" id="inputDescription" rows="3" autofocus="autofocus"></textarea>
     <p> 
-    <input type="radio" style="height:30px; width:30px;" name="eventType" value="private"> Assignment     
-    <input type="radio" style="height:30px; width:30px;" name="eventType" value="user"> Student Event     
+    <input type="radio" style="height:30px; width:30px;" name="eventType" value="user"> Assignment     
+    <input type="radio" style="height:30px; width:30px;" name="eventType" value="private"> Student Event     
     <input type="radio" style="height:30px; width:30px;" name="eventType" value="public"> Public Event
     </p>
     <button class="button" style="width:25%;font-size:100%" id="addButton" onclick="handleAddButtonClick()">Add</button>

@@ -9,9 +9,9 @@ const $sidebar = $('#sidebar');
 
 async function whichDelete(id) {
 
-    if (selectedView == "private") {
+    if (selectedView == "user") {
         deleteAssignment(id);
-    } else if (selectedView == "user") {
+    } else if (selectedView == "private") {
         deleteStudentEvent(id);
     } else {
         deleteEvent(id);
@@ -19,6 +19,28 @@ async function whichDelete(id) {
 
 
 }
+
+async function whichEdit(id) {
+
+    if (selectedView == "user") {
+        localStorage.setItem('editType', "user");
+        localStorage.setItem('editId', id);
+        location.href = '../edit/edit.html';
+    } else if (selectedView == "private") {
+        localStorage.setItem('editType', "private");
+        localStorage.setItem('editId', id);
+        location.href = '../edit/edit.html';
+    } else {
+        localStorage.setItem('editType', "public");
+        localStorage.setItem('editId', id);
+        location.href = '../edit/edit.html';
+    }
+
+
+}
+
+
+
 
 
 async function deleteEvent(id) {
@@ -33,7 +55,7 @@ async function deleteEvent(id) {
 async function deleteStudentEvent(id) {
     const result = await axios({
         method: 'DELETE',
-        url: 'http://localhost:3000/user/events/'.concat(id),
+        url: 'http://localhost:3000/private/events/'.concat(id),
         headers: {Authorization: `Bearer ${(token)}`}
       });
     location.reload();
@@ -42,19 +64,19 @@ async function deleteStudentEvent(id) {
 async function deleteAssignment(id) {
     const result = await axios({
         method: 'DELETE',
-        url: 'http://localhost:3000/private/events/'.concat(id),
+        url: 'http://localhost:3000/user/events/'.concat(id),
         headers: {Authorization: `Bearer ${(token)}`}
       });
     location.reload();
 }
 
 async function viewAssignments() {
-    localStorage.setItem('defaultView', "private");
+    localStorage.setItem('defaultView', "user");
     location.reload();
 }
 
 async function viewStudentEvents() {
-    localStorage.setItem('defaultView', "user");
+    localStorage.setItem('defaultView', "private");
     location.reload();
 }
 
@@ -160,12 +182,7 @@ $(async function () {
     var list = Object.values(result.data.result);
     var sortedEvents = list.sort((a, b) => (new Date(a.date)).getTime() - (new Date(b.date)).getTime());
     const $rightColumn = $('#rightColumn');
-    $rightColumn.append(
-        `
 
-        
-        `
-    )
     var i;
     for (i = 0; i < list.length; i++) {
         $rightColumn.append(
@@ -183,6 +200,7 @@ $(async function () {
                 </div>
                 <div class="column is-one-fifth" style="width:8%;border-top-style:solid;border-bottom-style:solid;background-color:skyblue">
                     <button class="button is-danger is-rounded is-centered" style="" id="delete" onclick="whichDelete(${sortedEvents[i].id})">Delete</button>
+                    <button class="button is-warning is-rounded is-centered" style="" id="edit" onclick="whichEdit(${sortedEvents[i].id})">Edit</button>
                 </div>
             </div>
         </p>
