@@ -18,7 +18,7 @@ async function addEvent() {
             "id": ID
           }}
       });
-      location.href = '../'
+      location.href = '../../index.html'
     
 }
 
@@ -37,7 +37,7 @@ async function addStudentEvent() {
             "id": ID
           }}
       });
-      location.href = '../'
+      location.href = '../../index.html'
     
 }
 
@@ -56,7 +56,7 @@ async function addAssignment() {
             "id": ID
           }}
       });
-      location.href = '../'
+      location.href = '../../index.html'
     
 }
 
