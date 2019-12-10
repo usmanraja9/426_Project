@@ -1,7 +1,7 @@
 
 $(async function() {
     const $form = $('#login-form');
-    const $message = $('#message');
+    const $message = $('#message-login');
 
     $form.submit(async function(e) {
         e.preventDefault();
@@ -23,9 +23,11 @@ $(async function() {
               });
               localStorage.setItem('token', result.data.jwt);
             $message.html('<span class="has-text-danger">Logged In!</span>');
-            location.href='../';
+            window.location.href = 'create/create.html';
+            
         } catch {
             $message.html('<span class="has-text-danger">create an account</span>');
+            window.setTimeout(function(){location.reload()},1700);
         }
  
 

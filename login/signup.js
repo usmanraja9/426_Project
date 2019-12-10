@@ -1,6 +1,6 @@
 $(function() {
     const $form = $('#sign-up-form');
-    const $message = $('#message');
+    const $message = $('#message-signup');
   
     $form.submit(function(e) {
       e.preventDefault();
@@ -21,6 +21,7 @@ $(function() {
         }
       }).then(() => {
         $message.html('<span class="has-text-success">You have created an account</span>');
+        window.setTimeout(function(){location.reload()},1000);
       }).catch(() => {
         $message.html('<span class="has-text-danger">You already have an account.</span>');
       });

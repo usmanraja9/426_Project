@@ -1,19 +1,4 @@
-/**
- * Course: COMP 426
- * Assignment: a04
- * Author: <type your name here>
- *
- * This script uses jQuery to build an HTML page with content taken from the
- * data defined in data.js.
- */
 
-
-
-/**
- * Given a hero object (see data.js), this function generates a "card" showing
- *     the hero's name, information, and colors.
- * @param hero  A hero object (see data.js)
- */
 export const createGrid = function(month, dates, start, year) {
     // TODO: Generate HTML elements to represent the hero
     if(dates == 31){
@@ -272,21 +257,6 @@ export const createCal = function(heroes) {
     let dayArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     let dates = getDates("January");
     $root.replaceWith(createGrid("January", dates, "Wednesday", 2020));
-
-    // // TODO: Generate the heroes using renderHeroCard()
-    // for(var x = 0; x < heroes.length; x++){
-    //     let y = (renderHeroCard(heroes[x]));
-    //     $root.append(y);
-    // }
-    // // TODO: Append the hero cards to the $root element
-
-    // // Pick a hero from the list at random
-    // const randomHero = heroes[Math.floor(Math.random() * heroes.length)];
-
-    // // TODO: Generate the hero edit form using renderHeroEditForm()
-    //     let y = (renderHeroEditForm(randomHero));
-    //     $root.append(y);
-    // // TODO: Append the hero edit form to the $root element
 };
 
 
