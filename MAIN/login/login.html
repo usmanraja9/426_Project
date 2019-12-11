@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login to COMP 426</title>
+
+    <!-- Include links to CSS stylesheets below -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" /> -->
+    <link rel="stylesheet" href="styles.css" />
+
+
+</head>
+
+<div class='container'>
+    <button class="login">LOGIN</button>
+    <button class='signup'>SIGNUP</button>
+
+    <form id="sign-up-form">
+        <div class='signup-card'>
+
+            <input type='text' placeholder="Your Name" class='input' id= 'sign-up-name'>
+            <br>
+            <input type='email' placeholder="Email Address" class='input' id= 'sign-up-email'>
+            <br>
+            <input type='text' placeholder="Choose Your Username" class='input' id= 'sign-up-username'>
+            <br>
+            <input type='password' placeholder="Choose Your Password" class='input'id = 'sign-up-password'>
+            <br>
+            <p id="message-signup"></p>
+            <button type="submit" class="btn">Sign Up</button>
+            <br>
+        </div>
+    </form>
+
+    <form id="login-form">
+        <div class='login-card'>
+            <input type='text' placeholder="Your Username" class='input' id="login-username" name='login-username'>
+            <br>
+            <input type='password' placeholder="Your Password" class='input' id="login-password" name='login-password'>
+            <br>
+            <p id="message-login" name='message-login'></p>
+            <br>
+            <button type="submit" class="btn">Login</button>
+            <br>
+        </div>
+    </form>
+</div>
+
+
+
+<!-- Include links to JavaScript files below -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="./signup.js"></script>
+<script src="./login.js"></script>
+</body>
+
+</html>

@@ -4,73 +4,50 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Login to COMP 426</title>
+        <title>Assignment Planner</title>
 
         <!-- Include links to CSS stylesheets below -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" />
-        <!-- <link rel="stylesheet" href="styles.css" />  -->
-
         
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" />
+        <!-- <link rel="stylesheet" href="styles.css" /> --> 
+        <style>
+        /* .columns {
+            min-height : 100vh;
+            display: flex;
+            flex-direction: row; // this is default
+            align-items: stretch; // this will stretch the children vertically
+        } */
+
+        .sidenav {
+            height: 100%;
+            width: 20%; 
+            position: fixed; 
+            z-index: 1; 
+            top: 0; 
+            left: 0;
+            background-color:blue; 
+            overflow-x: hidden; 
+            padding-top: 20px;
+}
+        </style>
     </head>
 
-    <body>
-        <div id="login">
-            <div class="login-card">
-                <div class="card-title">
-                    <h1>Login</h1>
-                </div>
+    <body id= "bdy">
 
-                <div class="content">
-                    <form id="login-form">
-                        <input id="login-username" type="string" name="login-username" title="login-username" placeholder="Username" required autofocus>
-                        <input id="login-password" type="password" name="login-password" title="login-password" placeholder="Password" required>
+        <div class="sidenav" id="sidebar"></div>
 
-                        <div class="field">
-                            <div class="control">
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </div>
-                        </div>
 
-                        <div class="field">
-                            <div class="control">
-                                <p id="message-login"></p>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div id="title"></div>
+        <div id = "main">
         </div>
-        <div id="sign-up">
-            <div class="sign-up-card">
-                <div class="sign-up-title">
-                    <h1>Sign Up</h1>
-                </div>
-
-                <div class="content">
-                    <form id="sign-up-form">
-                        <input id="sign-up-username" type="string" name="sign-up-username" title="sign-up-username" placeholder="Username" required autofocus>
-                        <input id="sign-up-password" type="password" name="sign-up-password" title="sign-up-password" placeholder="Password" required>
-
-                        <div class="field">
-                            <div class="control">
-                                <button type="submit" class="btn btn-primary">Sign Up</button>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <div class="control">
-                                <p id="message-signup"></p>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div id = "eventList">
         </div>
 
         <!-- Include links to JavaScript files below -->
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="./signup.js"></script>
-        <script src="./login.js"></script>
+        <script src="./script.js"></script>
+
+
     </body>
 </html>

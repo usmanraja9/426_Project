@@ -18,8 +18,7 @@ async function addEvent() {
             "id": ID
           }}
       });
-      location.href = '../mainPage/index.html'
-    
+      location.href = '../index.html'    
 }
 
 async function addStudentEvent() {
@@ -37,8 +36,7 @@ async function addStudentEvent() {
             "id": ID
           }}
       });
-      location.href = '../mainPage/index.html'
-    
+      location.href = '../index.html'    
 }
 
 async function addAssignment() {
@@ -56,7 +54,7 @@ async function addAssignment() {
             "id": ID
           }}
       });
-      location.href = '../mainPage/index.html'
+      location.href = '../index.html'
     
 }
 
@@ -92,7 +90,7 @@ $(function () {
     <input type="radio" style="height:30px; width:30px;" name="eventType" value="public"> Public Event
     </p>
     <button class="button" style="width:25%;font-size:100%" id="addButton" onclick="handleAddButtonClick()">Add</button>
-    <button class="button" style="width:25%;font-size:100%" id="cancelButton" onclick="location.href = '../mainPage/index.html'";>Cancel</button>
+    <button class="button" style="width:25%;font-size:100%" id="cancelButton" onclick="location.href = '../index.html'";>Cancel</button>
     </section>
     `
     )
