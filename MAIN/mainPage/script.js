@@ -20,6 +20,23 @@ async function whichDelete(id) {
 
 }
 
+function parseTime(timeString) {
+    var postfix = " AM"
+    var hour = timeString.substring(0, 2);
+    //alert(hour);
+    if (hour.substring(1,2) == ":") {
+        hour = hour.substring(0,1);
+    }
+    if (parseInt(hour) > 12) {
+        postfix = " PM"
+        hour = parseInt(hour) - 12;
+    } 
+     
+    var min = timeString.substring(timeString.length-2, timeString.length);
+    var t = String(hour).concat(":").concat(min).concat(postfix);
+    return t;
+}
+
 async function whichEdit(id) {
 
     if (selectedView == "user") {
@@ -139,7 +156,7 @@ $(async function () {
     $bdy.append(
     `
     <div class="columns" style="height:100%;min-height:100vh">
-        <div class="column is-one-fifth" id="leftColumn" style="width:20%">
+        <div class="column is-one-fifth" id="leftColumn" style="width:370px">
         </div>
         <div class="column" id="rightColumn" style="width:80%">
             
@@ -190,15 +207,15 @@ $(async function () {
         <p class="" style="padding:5px;width:100%;font-size:150%">
             <div class="columns">
                 <div class="column is-one-fifth" style="border-top-style:solid;border-bottom-style:solid;background-color:skyblue;text-align:center;font-size:200%">
-                    <p> ${sortedEvents[i].date}  </p>
-                    <p> ${sortedEvents[i].time}  </p>
+                    <p> ${new Date(sortedEvents[i].date).getMonth()}/${new Date(sortedEvents[i].date).getDay()}/${new Date(sortedEvents[i].date).getFullYear()}  </p>
+                    <p> ${parseTime(sortedEvents[i].time)} </p>
 
                 </div>
                 <div class="column" style="border-top-style:solid;border-bottom-style:solid;background-color:skyblue;text-align:center;font-size:200%">
                     <b>${sortedEvents[i].name} </b>
                     <p>${sortedEvents[i].description} </p>
                 </div>
-                <div class="column is-one-fifth" style="width:8%;border-top-style:solid;border-bottom-style:solid;background-color:skyblue">
+                <div class="column is-one-fifth" style="width:124px;border-top-style:solid;border-bottom-style:solid;background-color:skyblue">
                     <p style="padding:5px"><button class="button is-danger is-rounded is-centered" style="width:84px;" id="delete" onclick="whichDelete(${sortedEvents[i].id})">Delete</button></p>
                     <p style="padding:5px"><button class="button is-warning is-rounded is-centered" style="width:84px;" id="edit" onclick="whichEdit(${sortedEvents[i].id})">Edit</button></p>
                 </div>
