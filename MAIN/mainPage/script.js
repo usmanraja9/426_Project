@@ -18,13 +18,11 @@ async function whichDelete(id) {
         deleteEvent(id);
     }
 
-
 }
 
 function parseTime(timeString) {
     var postfix = " AM"
     var hour = timeString.substring(0, 2);
-    //alert(hour);
     if (hour.substring(1,2) == ":") {
         hour = hour.substring(0,1);
     }
@@ -56,10 +54,6 @@ async function whichEdit(id) {
 
 
 }
-
-
-
-
 
 async function deleteEvent(id) {
     const result = await axios({
@@ -113,8 +107,6 @@ async function logout() {
 }
 
 
-
-
 $(async function () {
 
     var loggedIn;
@@ -129,13 +121,6 @@ $(async function () {
         loggedIn = false;
         localStorage.setItem('defaultView', "public");
     }
-
-    // // RANDOM QUOTE API
-    // var qresult;
-    // qresult = await axios({
-    //     method: 'GET',
-    //     url: 'https://quote-garden.herokuapp.com/quotes/random',
-    // });
 
     if (loggedIn) {
         $sidebar.append(

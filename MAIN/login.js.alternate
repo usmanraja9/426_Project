@@ -1,0 +1,63 @@
+
+$(async function() {
+    const $form = $('#login-form');
+    const $message = $('#message-login');
+
+    $form.submit(async function(e) {
+        e.preventDefault();
+    
+        $message.html('');
+    
+        try {
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://pozzad-email-validator.p.rapidapi.com/emailvalidator/validateEmail/john@yahoo.com",
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "pozzad-email-validator.p.rapidapi.com",
+                    "x-rapidapi-key": "7cd8dd8372msh7350680a625eacep1c5955jsncd2afb12282d"
+                }
+            }
+            
+            $.ajax(settings).done(function (response) {
+                if (response.isValid) {
+                        // maybe mark as 
+                } else {
+                    $message.html('<span class="has-text-danger">Invalid Email Address! Yahoo addresses will pass validator!</span>');
+
+                }
+            });
+        } catch {
+
+        }
+
+        try {
+            const data = $form.serializeArray().reduce((o, x) => {
+                o[x.name] = x.value;
+                return o;
+              }, {});
+
+              let result = await axios({
+                  method: 'POST',
+                  url: 'http://localhost:3000/account/login',
+                  data: {
+                    "name": $('#login-username').val(),
+                    "pass": $('#login-password').val(),
+                    "data": {"email":$('#login-email').val()}
+                    }
+              });
+              localStorage.setItem('token', result.data.jwt);
+            $message.html('<span class="has-text-danger">Logged In!</span>');
+            window.location.href = 'mainPage/index.html';
+            
+        } catch {
+            $message.html('<span class="has-text-danger">create an account</span>');
+            window.setTimeout(function(){location.reload()},1700);
+        }
+ 
+
+
+      });
+
+  });
