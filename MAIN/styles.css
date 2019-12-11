@@ -7,7 +7,7 @@
 
 body {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    background: url('../bg/bg1.jpg');
+    background: url('bg/bg1.jpg');
     background-size: 500;
     background-size:     cover;                
     background-repeat:   no-repeat;
@@ -34,7 +34,7 @@ body {
     cursor: pointer;
 }
 
-.signup-card {
+.signup-card  {
     background: white;
     box-sizing: border-box;
     clear: both;

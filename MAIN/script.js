@@ -43,15 +43,15 @@ async function whichEdit(id) {
     if (selectedView == "user") {
         localStorage.setItem('editType', "user");
         localStorage.setItem('editId', id);
-        location.href = '../edit/edit.html';
+        location.href = 'edit/edit.html';
     } else if (selectedView == "private") {
         localStorage.setItem('editType', "private");
         localStorage.setItem('editId', id);
-        location.href = '../edit/edit.html';
+        location.href = 'edit/edit.html';
     } else {
         localStorage.setItem('editType', "public");
         localStorage.setItem('editId', id);
-        location.href = '../edit/edit.html';
+        location.href = 'edit/edit.html';
     }
 
 
@@ -156,7 +156,7 @@ $(async function () {
     } else {
         $sidebar.append(
     `
-    <p style="text-align:center"><button class="button is-link is-large" style="" id="login" onclick="location.href = '../index.html';">Login</button></p>
+    <p style="text-align:center"><button class="button is-link is-large" style="" id="login" onclick="location.href = 'login/login.html';">Login</button></p>
 
     `
     )}
@@ -205,7 +205,7 @@ $(async function () {
         <p class="" style="padding:5px;width:100%;font-size:150%">
             <div class="columns">
                 <div class="column is-one-fifth" style="border-top-style:solid;border-bottom-style:solid;background-color:skyblue;text-align:center;font-size:200%">
-                    <p> ${new Date(sortedEvents[i].date).getMonth()}/${new Date(sortedEvents[i].date).getDay()}/${new Date(sortedEvents[i].date).getFullYear()}  </p>
+                    <p> ${new Date(sortedEvents[i].date).getMonth()+1}/${new Date(sortedEvents[i].date).getDate()+1}/${new Date(sortedEvents[i].date).getFullYear()}  </p>
                     <p> ${parseTime(sortedEvents[i].time)} </p>
 
                 </div>
