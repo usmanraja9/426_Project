@@ -7,6 +7,7 @@ const $eventList = $('#eventList');
 const $bdy = $('#bdy');
 const $sidebar = $('#sidebar');
 
+
 async function whichDelete(id) {
 
     if (selectedView == "user") {
@@ -129,6 +130,13 @@ $(async function () {
         localStorage.setItem('defaultView', "public");
     }
 
+    // RANDOM QUOTE API
+    var qresult;
+    qresult = await axios({
+        method: 'GET',
+        url: 'https://quote-garden.herokuapp.com/quotes/random',
+    });
+
     if (loggedIn) {
         $sidebar.append(
             `
@@ -141,6 +149,12 @@ $(async function () {
             <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="viewAssignments" onclick="viewAssignments()">View Assignments</button></p>
             <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="viewStudentEvents" onclick="viewStudentEvents()">View Student Event</button></p>
             <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="viewPublicEvents" onclick="viewPublicEvents()">View Public Events</button></p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <p class="has-text-white is-italic" style="text-align:center;color=white;font-size:100%">Quote of the day:</p>
+            <p class="has-text-white" style="text-align:center;color=white;font-size:100%">"${(qresult.data.quoteText)}"</p>
             <p style="text-align:center;padding:3%;vertical-align:bottom"><button class="button is-danger is-link is-large" style="width:80%;position:absolute;bottom:0;left:10%;" id="logout" onclick="logout()";">Logout</button></p>
 
             `
@@ -186,16 +200,6 @@ $(async function () {
         });
     }
 
-
-
-    // $eventList.append(
-    //     `
-    //     <button class="button is-link" style="" id="addAssignment" onclick="location.href = './create/';">Add Assignment</button>
-        
-    //     `
-    // )
-
-
     var list = Object.values(result.data.result);
     var sortedEvents = list.sort((a, b) => (new Date(a.date)).getTime() - (new Date(b.date)).getTime());
     const $rightColumn = $('#rightColumn');
@@ -217,7 +221,7 @@ $(async function () {
                 </div>
                 <div class="column is-one-fifth" style="width:124px;border-top-style:solid;border-bottom-style:solid;background-color:skyblue">
                     <p style="padding:5px"><button class="button is-danger is-rounded is-centered" style="width:84px;" id="delete" onclick="whichDelete(${sortedEvents[i].id})">Delete</button></p>
-                    <p style="padding:5px"><button class="button is-warning is-rounded is-centered" style="width:84px;" id="edit" onclick="whichEdit(${sortedEvents[i].id})">Edit</button></p>
+                    <p style="padding:5px"><button class="button is-warning is-rounded is-centered" style="width:84px;" id="edit" onclick="whichEdit(${sortedEvents[i].id})">Edit</button></p>   
                 </div>
             </div>
         </p>
