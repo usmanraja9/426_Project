@@ -7,11 +7,12 @@ const $eventList = $('#eventList');
 const $bdy = $('#bdy');
 const $sidebar = $('#sidebar');
 
+
 async function whichDelete(id) {
 
-    if (selectedView == "private") {
+    if (selectedView == "user") {
         deleteAssignment(id);
-    } else if (selectedView == "user") {
+    } else if (selectedView == "private") {
         deleteStudentEvent(id);
     } else {
         deleteEvent(id);
@@ -19,6 +20,45 @@ async function whichDelete(id) {
 
 
 }
+
+function parseTime(timeString) {
+    var postfix = " AM"
+    var hour = timeString.substring(0, 2);
+    //alert(hour);
+    if (hour.substring(1,2) == ":") {
+        hour = hour.substring(0,1);
+    }
+    if (parseInt(hour) > 12) {
+        postfix = " PM"
+        hour = parseInt(hour) - 12;
+    } 
+     
+    var min = timeString.substring(timeString.length-2, timeString.length);
+    var t = String(hour).concat(":").concat(min).concat(postfix);
+    return t;
+}
+
+async function whichEdit(id) {
+
+    if (selectedView == "user") {
+        localStorage.setItem('editType', "user");
+        localStorage.setItem('editId', id);
+        location.href = '../edit/edit.html';
+    } else if (selectedView == "private") {
+        localStorage.setItem('editType', "private");
+        localStorage.setItem('editId', id);
+        location.href = '../edit/edit.html';
+    } else {
+        localStorage.setItem('editType', "public");
+        localStorage.setItem('editId', id);
+        location.href = '../edit/edit.html';
+    }
+
+
+}
+
+
+
 
 
 async function deleteEvent(id) {
@@ -33,7 +73,7 @@ async function deleteEvent(id) {
 async function deleteStudentEvent(id) {
     const result = await axios({
         method: 'DELETE',
-        url: 'http://localhost:3000/user/events/'.concat(id),
+        url: 'http://localhost:3000/private/events/'.concat(id),
         headers: {Authorization: `Bearer ${(token)}`}
       });
     location.reload();
@@ -42,19 +82,19 @@ async function deleteStudentEvent(id) {
 async function deleteAssignment(id) {
     const result = await axios({
         method: 'DELETE',
-        url: 'http://localhost:3000/private/events/'.concat(id),
+        url: 'http://localhost:3000/user/events/'.concat(id),
         headers: {Authorization: `Bearer ${(token)}`}
       });
     location.reload();
 }
 
 async function viewAssignments() {
-    localStorage.setItem('defaultView', "private");
+    localStorage.setItem('defaultView', "user");
     location.reload();
 }
 
 async function viewStudentEvents() {
-    localStorage.setItem('defaultView', "user");
+    localStorage.setItem('defaultView', "private");
     location.reload();
 }
 
@@ -90,10 +130,17 @@ $(async function () {
         localStorage.setItem('defaultView', "public");
     }
 
+    // // RANDOM QUOTE API
+    // var qresult;
+    // qresult = await axios({
+    //     method: 'GET',
+    //     url: 'https://quote-garden.herokuapp.com/quotes/random',
+    // });
+
     if (loggedIn) {
         $sidebar.append(
             `
-            <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="addAssignment" onclick="location.href = 'create/create.html';">Add Assignment/Event</button></p>
+            <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="addAssignment" onclick="location.href = '../create/create.html';">Add Assignment/Event</button></p>
             <br>
             <br>
             <br>
@@ -109,7 +156,7 @@ $(async function () {
     } else {
         $sidebar.append(
     `
-    <p style="text-align:center"><button class="button is-link is-large" style="" id="login" onclick="location.href = 'login/login.html';">Login</button></p>
+    <p style="text-align:center"><button class="button is-link is-large" style="" id="login" onclick="location.href = '../index.html';">Login</button></p>
 
     `
     )}
@@ -117,7 +164,7 @@ $(async function () {
     $bdy.append(
     `
     <div class="columns" style="height:100%;min-height:100vh">
-        <div class="column is-one-fifth" id="leftColumn" style="width:20%">
+        <div class="column is-one-fifth" id="leftColumn" style="width:370px">
         </div>
         <div class="column" id="rightColumn" style="width:80%">
             
@@ -147,25 +194,10 @@ $(async function () {
         });
     }
 
-
-
-    // $eventList.append(
-    //     `
-    //     <button class="button is-link" style="" id="addAssignment" onclick="location.href = './create/';">Add Assignment</button>
-        
-    //     `
-    // )
-
-
     var list = Object.values(result.data.result);
     var sortedEvents = list.sort((a, b) => (new Date(a.date)).getTime() - (new Date(b.date)).getTime());
     const $rightColumn = $('#rightColumn');
-    $rightColumn.append(
-        `
 
-        
-        `
-    )
     var i;
     for (i = 0; i < list.length; i++) {
         $rightColumn.append(
@@ -173,16 +205,17 @@ $(async function () {
         <p class="" style="padding:5px;width:100%;font-size:150%">
             <div class="columns">
                 <div class="column is-one-fifth" style="border-top-style:solid;border-bottom-style:solid;background-color:skyblue;text-align:center;font-size:200%">
-                    <p> ${sortedEvents[i].date}  </p>
-                    <p> ${sortedEvents[i].time}  </p>
+                    <p> ${new Date(sortedEvents[i].date).getMonth()}/${new Date(sortedEvents[i].date).getDay()}/${new Date(sortedEvents[i].date).getFullYear()}  </p>
+                    <p> ${parseTime(sortedEvents[i].time)} </p>
 
                 </div>
                 <div class="column" style="border-top-style:solid;border-bottom-style:solid;background-color:skyblue;text-align:center;font-size:200%">
                     <b>${sortedEvents[i].name} </b>
                     <p>${sortedEvents[i].description} </p>
                 </div>
-                <div class="column is-one-fifth" style="width:8%;border-top-style:solid;border-bottom-style:solid;background-color:skyblue">
-                    <button class="button is-danger is-rounded is-centered" style="" id="delete" onclick="whichDelete(${sortedEvents[i].id})">Delete</button>
+                <div class="column is-one-fifth" style="width:124px;border-top-style:solid;border-bottom-style:solid;background-color:skyblue">
+                    <p style="padding:5px"><button class="button is-danger is-rounded is-centered" style="width:84px;" id="delete" onclick="whichDelete(${sortedEvents[i].id})">Delete</button></p>
+                    <p style="padding:5px"><button class="button is-warning is-rounded is-centered" style="width:84px;" id="edit" onclick="whichEdit(${sortedEvents[i].id})">Edit</button></p>   
                 </div>
             </div>
         </p>
@@ -191,6 +224,19 @@ $(async function () {
         )
     }
 
+    // RANDOM QUOTE API
+    var qresult;
+    qresult = await axios({
+        method: 'GET',
+        url: 'https://quote-garden.herokuapp.com/quotes/random',
+    });
 
-
+    $sidebar.append(
+        `
+            <br>
+            <br>
+            <br>
+            <p class="has-text-white is-italic" style="text-align:center;color=white;font-size:100%">Quote of the day:</p>
+            <p class="has-text-white" style="text-align:center;color=white;font-size:100%">"${(qresult.data.quoteText)}"</p>
+            )`)
 });
