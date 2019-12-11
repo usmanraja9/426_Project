@@ -130,12 +130,12 @@ $(async function () {
         localStorage.setItem('defaultView', "public");
     }
 
-    // RANDOM QUOTE API
-    var qresult;
-    qresult = await axios({
-        method: 'GET',
-        url: 'https://quote-garden.herokuapp.com/quotes/random',
-    });
+    // // RANDOM QUOTE API
+    // var qresult;
+    // qresult = await axios({
+    //     method: 'GET',
+    //     url: 'https://quote-garden.herokuapp.com/quotes/random',
+    // });
 
     if (loggedIn) {
         $sidebar.append(
@@ -149,12 +149,6 @@ $(async function () {
             <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="viewAssignments" onclick="viewAssignments()">View Assignments</button></p>
             <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="viewStudentEvents" onclick="viewStudentEvents()">View Student Event</button></p>
             <p style="text-align:center;padding:3%"><button class="button is-link is-large" style="width:80%" id="viewPublicEvents" onclick="viewPublicEvents()">View Public Events</button></p>
-            <br>
-            <br>
-            <br>
-            <br>
-            <p class="has-text-white is-italic" style="text-align:center;color=white;font-size:100%">Quote of the day:</p>
-            <p class="has-text-white" style="text-align:center;color=white;font-size:100%">"${(qresult.data.quoteText)}"</p>
             <p style="text-align:center;padding:3%;vertical-align:bottom"><button class="button is-danger is-link is-large" style="width:80%;position:absolute;bottom:0;left:10%;" id="logout" onclick="logout()";">Logout</button></p>
 
             `
@@ -230,6 +224,19 @@ $(async function () {
         )
     }
 
+    // RANDOM QUOTE API
+    var qresult;
+    qresult = await axios({
+        method: 'GET',
+        url: 'https://quote-garden.herokuapp.com/quotes/random',
+    });
 
-
+    $sidebar.append(
+        `
+            <br>
+            <br>
+            <br>
+            <p class="has-text-white is-italic" style="text-align:center;color=white;font-size:100%">Quote of the day:</p>
+            <p class="has-text-white" style="text-align:center;color=white;font-size:100%">"${(qresult.data.quoteText)}"</p>
+            )`)
 });
