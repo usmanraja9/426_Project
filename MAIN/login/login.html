@@ -14,39 +14,42 @@
 
 </head>
 
-<div class='container'>
-    <button class="login">LOGIN</button>
-    <button class='signup'>SIGNUP</button>
+<body>
+    <div class='container'>
+        <button class="login">LOGIN</button>
+        <button class='signup'>SIGNUP</button>
 
-    <form id="sign-up-form">
-        <div class='signup-card'>
+        <form id="sign-up-form">
+            <div class='signup-card'>
 
-            <input type='text' placeholder="Your Name" class='input' id= 'sign-up-name'>
-            <br>
-            <input type='email' placeholder="Email Address" class='input' id= 'sign-up-email'>
-            <br>
-            <input type='text' placeholder="Choose Your Username" class='input' id= 'sign-up-username'>
-            <br>
-            <input type='password' placeholder="Choose Your Password" class='input'id = 'sign-up-password'>
-            <br>
-            <p id="message-signup"></p>
-            <button type="submit" class="btn">Sign Up</button>
-            <br>
+                <input type='text' placeholder="Your Name" class='input' id='sign-up-name'>
+                <br>
+                <input type='email' placeholder="Email Address" class='input' id='sign-up-email'>
+                <br>
+                <input type='text' placeholder="Choose Your Username" class='input' id='sign-up-username'>
+                <br>
+                <input type='password' placeholder="Choose Your Password" class='input' id='sign-up-password'>
+                <br>
+                <p id="message-signup"></p>
+                <button type="submit" class="btn">Sign Up</button>
+                <br>
+            </div>
+        </form>
+
+        <form id="login-form">
+            <div class='login-card'>
+                <input type='text' placeholder="Your Username" class='input' id="login-username" name='login-username'>
+                <br>
+                <input type='password' placeholder="Your Password" class='input' id="login-password" name='login-password'>
+                <br>
+                <p id="message-login" name='message-login'></p>
+                <br>
+                <button type="submit" class="btn">Login</button>
+                <br>
+            </div>
+        </form>
         </div>
-    </form>
-
-    <form id="login-form">
-        <div class='login-card'>
-            <input type='text' placeholder="Your Username" class='input' id="login-username" name='login-username'>
-            <br>
-            <input type='password' placeholder="Your Password" class='input' id="login-password" name='login-password'>
-            <br>
-            <p id="message-login" name='message-login'></p>
-            <br>
-            <button type="submit" class="btn">Login</button>
-            <br>
-        </div>
-    </form>
+</body>
 </div>
 
 
