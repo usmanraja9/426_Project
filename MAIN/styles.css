@@ -5,14 +5,14 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: blue;
+    background-color: skyblue;
     overflow-x: hidden;
     padding-top: 20px;
 }
 
 #rightColumn {
-    background: url('bg/bg2.jpg');
+    background: url('bg/bg2.jpg') ;
     background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+
+
 }

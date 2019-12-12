@@ -209,17 +209,17 @@ $(async function () {
             `
         <p class="" style="padding:5px;width:100%;font-size:150%">
             <div class="columns">
-                <div class="column is-one-fifth" style="border-top-style:solid;border-bottom-style:solid;background-color:skyblue;text-align:center;font-size:200%">
+                <div class="column is-one-fifth" style="border-top-style:solid;border-bottom-style:solid;background-color:yellow;text-align:center;font-size:200%">
                     <p> ${month}/${date}/${year}  </p>
                     <p> ${parseTime(sortedEvents[i].time)} </p>
                    
 
                 </div>
-                <div class="column" style="border-top-style:solid;border-bottom-style:solid;background-color:skyblue;text-align:center;font-size:200%">
+                <div class="column" style="border-top-style:solid;border-bottom-style:solid;background-color:orange;text-align:center;font-size:200%">
                     <b>${sortedEvents[i].name} </b>
                     <p>${sortedEvents[i].description} </p>
                 </div>
-                <div class="column is-one-fifth" style="width:124px;border-top-style:solid;border-bottom-style:solid;background-color:skyblue">
+                <div class="column is-one-fifth" style="width:124px;border-top-style:solid;border-bottom-style:solid;background-color:orange">
                     <p style="padding:5px"><button class="button is-danger is-rounded is-centered" style="width:84px;" id="delete" onclick="whichDelete(${sortedEvents[i].id})">Delete</button></p>
                     <p style="padding:5px"><button class="button is-warning is-rounded is-centered" style="width:84px;" id="edit" onclick="whichEdit(${sortedEvents[i].id})">Edit</button></p>   
                 </div>
@@ -242,7 +242,7 @@ $(async function () {
             <br>
             <br>
             <br>
-            <p class="has-text-white is-italic" style="text-align:center;color=white;font-size:100%">Quote of the day:</p>
-            <p class="has-text-white" style="text-align:center;color=white;font-size:100%">"${(qresult.data.quoteText)}"</p>
-            )`)
+            <p class="has-text-black is-italic" style="text-align:center;color=white;font-size:120%">Quote of the day:</p>
+            <p class="has-text-black" style="text-align:center;color=white;font-size:120%">"${(qresult.data.quoteText)}"</p>
+        `)
 });
