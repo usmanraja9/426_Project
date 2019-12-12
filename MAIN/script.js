@@ -200,13 +200,19 @@ $(async function () {
 
     var i;
     for (i = 0; i < list.length; i++) {
+        // alert(sortedEvents[i].date);
+        let original = sortedEvents[i].date;
+        let year = original.slice(0, 4);
+        let month = original.slice(5, 7);
+        let date = original.slice(8, 10);
         $rightColumn.append(
             `
         <p class="" style="padding:5px;width:100%;font-size:150%">
             <div class="columns">
                 <div class="column is-one-fifth" style="border-top-style:solid;border-bottom-style:solid;background-color:skyblue;text-align:center;font-size:200%">
-                    <p> ${new Date(sortedEvents[i].date).getMonth()+1}/${new Date(sortedEvents[i].date).getDate()+1}/${new Date(sortedEvents[i].date).getFullYear()}  </p>
+                    <p> ${month}/${date}/${year}  </p>
                     <p> ${parseTime(sortedEvents[i].time)} </p>
+                   
 
                 </div>
                 <div class="column" style="border-top-style:solid;border-bottom-style:solid;background-color:skyblue;text-align:center;font-size:200%">

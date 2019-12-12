@@ -17,69 +17,70 @@ var locations = ["Abernathy", "Alumni", "Art Studio Building", "Hanes Art Center
 /** This function to drive our autocomplete taken from: https://www.w3schools.com/howto/howto_js_autocomplete.asp */
 function autocomplete(inp, arr) {
     var currentFocus;
-    inp.addEventListener("input", function(e) {
+    inp.addEventListener("input", function (e) {
         var a, b, i, val = this.value;
         closeAllLists();
-        if (!val) { return false;}
+        if (!val) { return false; }
         currentFocus = -1;
         a = document.createElement("DIV");
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
         this.parentNode.appendChild(a);
         for (i = 0; i < arr.length; i++) {
-          if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-            b = document.createElement("DIV");
-            b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-            b.innerHTML += arr[i].substr(val.length);
-            b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                b.addEventListener("click", function(e) {
-                inp.value = this.getElementsByTagName("input")[0].value;
-                closeAllLists();
-            });
-            a.appendChild(b);
-          }
+            if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                b = document.createElement("DIV");
+                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                b.innerHTML += arr[i].substr(val.length);
+                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                b.addEventListener("click", function (e) {
+                    inp.value = this.getElementsByTagName("input")[0].value;
+                    closeAllLists();
+                });
+                a.appendChild(b);
+            }
         }
     });
-    inp.addEventListener("keydown", function(e) {
+    inp.addEventListener("keydown", function (e) {
         var x = document.getElementById(this.id + "autocomplete-list");
         if (x) x = x.getElementsByTagName("div");
         if (e.keyCode == 40) {
-          currentFocus++;
-          addActive(x);
+            currentFocus++;
+            addActive(x);
         } else if (e.keyCode == 38) {
-          currentFocus--;
-          addActive(x);
+            currentFocus--;
+            addActive(x);
         } else if (e.keyCode == 13) {
-          e.preventDefault();
-          if (currentFocus > -1) {
-            if (x) x[currentFocus].click();
-          }
+            e.preventDefault();
+            if (currentFocus > -1) {
+                if (x) x[currentFocus].click();
+            }
         }
     });
+
     function addActive(x) {
-      if (!x) return false;
-      removeActive(x);
-      if (currentFocus >= x.length) currentFocus = 0;
-      if (currentFocus < 0) currentFocus = (x.length - 1);
-      x[currentFocus].classList.add("autocomplete-active");
+        if (!x) return false;
+        removeActive(x);
+        if (currentFocus >= x.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = (x.length - 1);
+        x[currentFocus].classList.add("autocomplete-active");
     }
     function removeActive(x) {
-      for (var i = 0; i < x.length; i++) {
-        x[i].classList.remove("autocomplete-active");
-      }
+        for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove("autocomplete-active");
+        }
     }
     function closeAllLists(elmnt) {
-      var x = document.getElementsByClassName("autocomplete-items");
-      for (var i = 0; i < x.length; i++) {
-        if (elmnt != x[i] && elmnt != inp) {
-        x[i].parentNode.removeChild(x[i]);
-      }
+        var x = document.getElementsByClassName("autocomplete-items");
+        for (var i = 0; i < x.length; i++) {
+            if (elmnt != x[i] && elmnt != inp) {
+                x[i].parentNode.removeChild(x[i]);
+            }
+        }
     }
-  }
-  document.addEventListener("click", function (e) {
-      closeAllLists(e.target);
-  });
-  }
+    document.addEventListener("click", function (e) {
+        closeAllLists(e.target);
+    });
+}
 
 
 
@@ -90,17 +91,19 @@ async function addEvent() {
     const result = await axios({
         method: 'POST',
         url: 'http://localhost:3000/public/events/'.concat(ID),
-        headers: {Authorization: `Bearer ${(token)}`},
-        data: {"data":{
-            "name": $("#inputName").val(),   
-            "date": $("#inputDate").val(),
-            "time": $("#inputTime").val(),
-            "location": $("#inputLocation").val(),
-            "description": $("#inputDescription").val(),
-            "id": ID
-          }}
-      });
-      window.location.href = '../index.html'    
+        headers: { Authorization: `Bearer ${(token)}` },
+        data: {
+            "data": {
+                "name": $("#inputName").val(),
+                "date": $("#inputDate").val(),
+                "time": $("#inputTime").val(),
+                "location": $("#inputLocation").val(),
+                "description": $("#inputDescription").val(),
+                "id": ID
+            }
+        }
+    });
+    location.href = '../index.html'
 }
 
 async function addStudentEvent() {
@@ -108,17 +111,19 @@ async function addStudentEvent() {
     const result = await axios({
         method: 'POST',
         url: 'http://localhost:3000/private/events/'.concat(ID),
-        headers: {Authorization: `Bearer ${(token)}`},
-        data: {"data":{
-            "name": $("#inputName").val(),   
-            "date": $("#inputDate").val(),
-            "time": $("#inputTime").val(),
-            "location": $("#inputLocation").val(),
-            "description": $("#inputDescription").val(),
-            "id": ID
-          }}
-      });
-      window.location.href = '../index.html'    
+        headers: { Authorization: `Bearer ${(token)}` },
+        data: {
+            "data": {
+                "name": $("#inputName").val(),
+                "date": $("#inputDate").val(),
+                "time": $("#inputTime").val(),
+                "location": $("#inputLocation").val(),
+                "description": $("#inputDescription").val(),
+                "id": ID
+            }
+        }
+    });
+    location.href = '../index.html'
 }
 
 async function addAssignment() {
@@ -126,17 +131,19 @@ async function addAssignment() {
     const result = await axios({
         method: 'POST',
         url: 'http://localhost:3000/user/events/'.concat(ID),
-        headers: {Authorization: `Bearer ${(token)}`},
-        data: {"data":{
-            "name": $("#inputName").val(),   
-            "date": $("#inputDate").val(),
-            "time": $("#inputTime").val(),
-            "location": $("#inputLocation").val(),
-            "description": $("#inputDescription").val(),
-            "id": ID
-          }}
-      });
-      window.location.href = '../index.html'    
+        headers: { Authorization: `Bearer ${(token)}` },
+        data: {
+            "data": {
+                "name": $("#inputName").val(),
+                "date": $("#inputDate").val(),
+                "time": $("#inputTime").val(),
+                "location": $("#inputLocation").val(),
+                "description": $("#inputDescription").val(),
+                "id": ID
+            }
+        }
+    });
+    location.href = '../index.html'
 }
 
 async function handleAddButtonClick() {
@@ -158,16 +165,15 @@ async function handleCancelButtonClick() {
 $(function () {
 
     $main.append(
-    `
-    <form autocomplete="off" action="location.href = '../mainPage/index.html'">
+        `
 
     <section class="center" style="position:relative;padding-top:5%;height:100%;text-align:center;font-size:200%;vertical-align:center">
     <p>Event Name</p>
     <input style="font-size:100%;width:50%;" id="inputName" class="input" type="text" value="" name="event">
     <p>Event Date & Time</p>
     <input style="font-size:100%;width:24.75%;" id="inputDate" type="date" name="date" value=""> <input style="font-size:100%;width:24.75%;" id="inputTime" type="time" name="time" value="">
-    <p>Event Location</p>
-    <input style="font-size:100%;width:50%;" id="inputLocation" class="input" type="text"  value="" name="location">
+    <p>Location</p>
+    <input id="inputLocation" style="font-size:100%;width:50%;"> 
     <p>Description</p> 
     <textarea style="font-size:100%;width:50%;" id="inputDescription" rows="3" autofocus="autofocus"></textarea>
     <p> 
@@ -178,11 +184,9 @@ $(function () {
     <button class="button" type = "sub" style="width:25%;font-size:100%" id="addButton" onclick="handleAddButtonClick()">Add</button>
     <button class="button" type="reset" style="width:25%;font-size:100%" id="cancelButton" onclick="handleCancelButtonClick()";>Cancel</button>
     </section>
-    </form>
-
     `
 
-    
+
     )
     autocomplete(document.getElementById("inputLocation"), locations);
 

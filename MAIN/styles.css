@@ -1,0 +1,18 @@
+.sidenav {
+    height: 100%;
+    width: 370px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: blue;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+#rightColumn {
+    background: url('bg/bg2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
