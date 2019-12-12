@@ -11,8 +11,8 @@
 }
 
 #rightColumn {
-    background: url('bg/bg2.jpg') ;
+    background: url('bg/bg2.jpg');
     background-size: cover;
-
+    background-repeat: no-repeat;
 
 }
