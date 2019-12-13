@@ -1,4 +1,4 @@
-This is our old repo
+This is our old repo. 
 
 New repo with the final project: https://github.com/sifuentes11/426-Final
 
